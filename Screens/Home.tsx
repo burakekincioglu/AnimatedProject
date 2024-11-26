@@ -1,8 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import { constants } from './constants';
 
 const HomeScreen = () => {
+
     const navigation = useNavigation();
     
     return (
@@ -11,7 +13,7 @@ const HomeScreen = () => {
         <Button
         title='Carousel'
         color={'gray'} 
-        onPress={() => navigation.navigate('Carousel')}
+        onPress={() => navigation.navigate(constants.ScreenNames.Carousel)}
         />
         </View>
     )
