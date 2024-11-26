@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 import { constants } from './constants';
 
 const HomeScreen = () => {
@@ -9,12 +9,20 @@ const HomeScreen = () => {
     
     return (
         <View style={styles.container}>
-        <Text>Home</Text>
-        <Button
-        title='Carousel'
-        color={'gray'} 
-        onPress={() => navigation.navigate(constants.ScreenNames.Carousel)}
-        />
+        {Object.entries(constants.ScreenNames).map(([key, value], index) => {
+            
+            if (index === 0) {
+                return null
+            }else{
+                return(
+                    <Button
+                        title={key}
+                        color={'gray'} 
+                        onPress={() => navigation.navigate(value)}
+                    />
+                )
+            }
+        })}
         </View>
     )
 }
