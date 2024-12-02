@@ -2,8 +2,7 @@ import { createStaticNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import CarouselScreen from './Screens/CarouselScreen'
 import HomeScreen from './Screens/Home'
-import PagingDots from './Screens/PagingDots'
-
+import PagingDotsScreen from './Screens/PagingDotsScreen'
 const App = () => {
   const RootStack = createNativeStackNavigator({
     screens: {
@@ -15,15 +14,15 @@ const App = () => {
           }
         }
       },
-      Carousel: CarouselScreen,
       PagingDots: {
-        screen: PagingDots,
+        screen: PagingDotsScreen,
         options: {
           headerStyle: {
             backgroundColor: 'black'
           }
         }
-      }
+      },
+      Carousel: CarouselScreen
     }
   })
 
