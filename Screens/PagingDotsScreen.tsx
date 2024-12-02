@@ -1,9 +1,9 @@
 import React from 'react'
-import { StatusBar, StyleSheet, useWindowDimensions, View } from 'react-native'
+import { StatusBar, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
 import Animated, { useAnimatedRef, useDerivedValue, useScrollViewOffset } from 'react-native-reanimated'
 import PagingDots from '../components/PagingDots'
 
-const ACTIVE_COLOR = '#66e070'
+
 const DOTS_COUNT = 3
 
 const PagingDotsScreen = () => {
@@ -14,7 +14,7 @@ const PagingDotsScreen = () => {
   const scrollOffset = useScrollViewOffset(scrollAnimatedRef)
 
   const activeIndex = useDerivedValue(() => {
-    return Math.round(scrollOffset.value / (width*0.8))
+    return Math.floor(scrollOffset.value / (width*0.8))
   })
 
   return (
@@ -24,19 +24,23 @@ const PagingDotsScreen = () => {
             ref={scrollAnimatedRef} 
             horizontal 
             decelerationRate={'fast'} 
-            snapToInterval={width*0.8}
-            style={{marginLeft: width*0.1}}
+            snapToInterval={width}
         >
             {new Array(DOTS_COUNT).fill(0).map((_, index) => {
             return <View 
                         key={index} 
                         style={[styles.slideContainer,
-                                {width: width*0.8,
+                                {width: width,
                                 height: height*0.5,
-                                opacity: index*0.3 + 0.1,
-                                marginRight: width*0.1
+                                justifyContent: "center",
+                                alignItems: "center"
                                 }]}
-                    />
+                    >
+                        <View style={{alignItems:"center", justifyContent: "center", width: 150, height: 100, borderWidth: 1, borderColor: 'white'}}>
+                            <Text style={{color: "white", fontWeight: "bold"}} >Example Image</Text>
+                        </View>
+                        
+                    </View>
             })}
         </Animated.ScrollView>
         <View style={styles.dotsContainer}>
@@ -56,7 +60,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'black'
     },
     slideContainer: {
-        backgroundColor: 'white',
+        // backgroundColor: '#28136e',
+        //  borderWidth: 1,
+        borderColor: 'white'
     },
     dotsContainer: {
         position: "absolute"

@@ -1,6 +1,5 @@
 import { createStaticNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import CarouselScreen from './Screens/CarouselScreen'
 import HomeScreen from './Screens/Home'
 import PagingDotsScreen from './Screens/PagingDotsScreen'
 const App = () => {
@@ -21,8 +20,7 @@ const App = () => {
             backgroundColor: 'black'
           }
         }
-      },
-      Carousel: CarouselScreen
+      }
     }
   })
 
