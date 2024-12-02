@@ -1,6 +1,7 @@
 export const constants = {
   ScreenNames: {
     Home: 'Home',
-    Carousel: 'Carousel'
+    Carousel: 'Carousel',
+    PagingDots: 'PagingDots'
   }
 }
