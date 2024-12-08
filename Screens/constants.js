@@ -2,6 +2,7 @@ export const constants = {
   ScreenNames: {
     Home: 'Home',
     PagingDots: 'PagingDots',
-    ExploreInterpolate: 'ExploreInterpolate'
+    ExploreInterpolate: 'ExploreInterpolate',
+    DoubleTapLikeGesture: 'DoubleTapLikeGesture'
   }
 }
