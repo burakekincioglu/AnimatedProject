@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
 import Animated, { interpolate, SharedValue, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
 
 const ExploreInterpolate = () => {
@@ -45,7 +45,9 @@ const ExploreInterpolate = () => {
         <Animated.View
             key={index} 
             style={[styles.card, rStyle, {zIndex: -index}]}
-        />
+        >
+            {index === 0 && <Text style={styles.text} >Tıkla ve Gör</Text>}
+        </Animated.View>
     )
 
   })
@@ -89,6 +91,11 @@ const styles = StyleSheet.create({
         elevation: 3,
         borderWidth: 1,
         borderColor: '#b9b9b9',
-        position: 'absolute'
+        position: 'absolute',
+        alignItems: 'center',
+        justifyContent: "center"
+    },
+    text: {
+        fontWeight: 'bold'
     }
 })
