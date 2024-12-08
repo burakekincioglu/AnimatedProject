@@ -1,5 +1,6 @@
 import { createStaticNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import ExploreInterpolate from './Screens/ExploreInterpolate'
 import HomeScreen from './Screens/Home'
 import PagingDotsScreen from './Screens/PagingDotsScreen'
 const App = () => {
@@ -15,6 +16,15 @@ const App = () => {
       },
       PagingDots: {
         screen: PagingDotsScreen,
+        options: {
+          headerStyle: {
+            backgroundColor: 'black'
+          }
+        },
+        initialParams: { dotSize: 10 }
+      },
+      ExploreInterpolate: {
+        screen: ExploreInterpolate,
         options: {
           headerStyle: {
             backgroundColor: 'black'
