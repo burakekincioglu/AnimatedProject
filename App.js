@@ -24,12 +24,7 @@ const App = () => {
         initialParams: { dotSize: 10 }
       },
       ExploreInterpolate: {
-        screen: ExploreInterpolate,
-        options: {
-          headerStyle: {
-            backgroundColor: 'black'
-          }
-        }
+        screen: ExploreInterpolate
       }
     }
   })
