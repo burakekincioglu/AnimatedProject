@@ -44,7 +44,7 @@ const ExploreInterpolate = () => {
     return(
         <Animated.View
             key={index} 
-            style={[styles.card, rStyle, {zIndex: -index}]}
+            style={[styles.card, rStyle, {zIndex: -index, backgroundColor: index % 2 === 0 ? '#fe3d6d' : 'white'}]}
         >
             {index === 0 && <Text style={styles.text} >Tıkla ve Gör</Text>}
         </Animated.View>
