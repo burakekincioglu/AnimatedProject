@@ -1,5 +1,6 @@
 import { createStaticNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import DoubleTapLikeGesture from './Screens/DoubleTapLikeGesture'
 import ExploreInterpolate from './Screens/ExploreInterpolate'
 import HomeScreen from './Screens/Home'
 import PagingDotsScreen from './Screens/PagingDotsScreen'
@@ -25,6 +26,9 @@ const App = () => {
       },
       ExploreInterpolate: {
         screen: ExploreInterpolate
+      },
+      DoubleTapLikeGesture: {
+        screen: DoubleTapLikeGesture
       }
     }
   })
