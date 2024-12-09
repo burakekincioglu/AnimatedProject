@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { Dimensions, Image, ImageBackground, StyleSheet, View } from 'react-native'
 import { TapGestureHandler } from 'react-native-gesture-handler'
-import Animated, { useAnimatedStyle, useSharedValue, withDelay, withSpring } from 'react-native-reanimated'
+import Animated, { interpolate, useAnimatedStyle, useSharedValue, withDelay, withSpring } from 'react-native-reanimated'
 
 const backgroundImg = require('../assets/images/img1.jpg')
 const likeIcon = require('../assets/icons/liked.png')
@@ -16,10 +16,15 @@ const DoubleTapLikeGesture = () => {
 
   const scale = useSharedValue(0)
 
-  const rStyle = useAnimatedStyle(() => ({
-    transform: [ {scale: scale.value} // {scale: Math.max(scale.value,0)} BURAYA DİKKAT !
+  const rStyle = useAnimatedStyle(() => { 
+    const translateX = interpolate(scale.value,[0,3], [0, 25])
+    const translateY = interpolate(scale.value,[0,3], [0, -25])
+    return {
+    transform: [ {scale: scale.value}, // {scale: Math.max(scale.value,0)} BURAYA DİKKAT !
+                 {translateX: translateX},
+                 {translateY: translateY}
       ]
-  }))
+  }})
 
   const onDoubleTap = useCallback(() => {
     scale.value = withSpring(3,undefined, (finished) => {
