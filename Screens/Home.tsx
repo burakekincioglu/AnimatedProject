@@ -16,6 +16,7 @@ const HomeScreen = () => {
             }else{
                 return(
                     <Button
+                        key={index}
                         title={key}
                         color={'gray'} 
                         onPress={() => navigation.navigate(value)}

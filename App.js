@@ -1,5 +1,6 @@
 import { createStaticNavigation } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import DoubleTapLikeGesture from './Screens/DoubleTapLikeGesture'
 import ExploreInterpolate from './Screens/ExploreInterpolate'
 import HomeScreen from './Screens/Home'
@@ -35,7 +36,11 @@ const App = () => {
 
   const Navigation = createStaticNavigation(RootStack)
 
-  return <Navigation />
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Navigation />
+    </GestureHandlerRootView>
+  )
 }
 
 export default App
