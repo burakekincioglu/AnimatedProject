@@ -3,6 +3,7 @@ export const constants = {
     Home: 'Home',
     PagingDots: 'PagingDots',
     ExploreInterpolate: 'ExploreInterpolate',
-    DoubleTapLikeGesture: 'DoubleTapLikeGesture'
+    DoubleTapLikeGesture: 'DoubleTapLikeGesture',
+    PangestureGame: 'PangestureGame'
   }
 }

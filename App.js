@@ -5,6 +5,8 @@ import DoubleTapLikeGesture from './Screens/DoubleTapLikeGesture'
 import ExploreInterpolate from './Screens/ExploreInterpolate'
 import HomeScreen from './Screens/Home'
 import PagingDotsScreen from './Screens/PagingDotsScreen'
+import PangestureGame from './Screens/PangestureGame'
+
 const App = () => {
   const RootStack = createNativeStackNavigator({
     screens: {
@@ -30,6 +32,9 @@ const App = () => {
       },
       DoubleTapLikeGesture: {
         screen: DoubleTapLikeGesture
+      },
+      PangestureGame: {
+        screen: PangestureGame
       }
     }
   })
