@@ -1,11 +1,11 @@
 import React from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
-import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
+import Animated, { clamp, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
 import { CENTER_ITEMS } from '../utils/styles'
 
-const SIZE = 80
-const CIRCLE_RADIOUS = SIZE * 2
+const R = 40
+const CIRCLE_RADIUS = 160
 
 interface Context {
     translationX: number
@@ -29,17 +29,14 @@ const PangestureGame = () => {
       prevTranslationY.value = translationY.value;
     })
     .onUpdate((event) => {
-      console.log(translationX.value, translationY.value);
-      
-      const distance = Math.sqrt(translationX.value ** 2 + translationY.value ** 2)
-      if (distance > CIRCLE_RADIOUS - SIZE / 2 - 5) {
-        prevTranslationX.value = translationX.value
-        prevTranslationY.value = translationY.value
-      }else{
-        translationX.value = prevTranslationX.value + event.translationX
-        translationY.value = prevTranslationY.value + event.translationY
-      }
-      
+      const x = prevTranslationX.value + event.translationX;
+      const y = prevTranslationY.value + event.translationY;
+      const maxRadius = CIRCLE_RADIUS - R / 2;
+    
+      const distance = Math.sqrt(x ** 2 + y **2 );
+      const scale = (distance > maxRadius) ? maxRadius / distance : 1;
+      translationX.value = clamp(x * scale, -maxRadius, maxRadius);
+      translationY.value = clamp(y * scale, -maxRadius, maxRadius);
     }).
     onEnd(() => {        
         translationX.value = withSpring(0)
@@ -77,15 +74,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     square: {
-        width: SIZE,
-        height: SIZE,
+        width: R,
+        height: R,
         backgroundColor: '#C70A0C',
-        borderRadius: SIZE
+        borderRadius: R
     },
     circle: {
-      width: CIRCLE_RADIOUS * 2,
-      height: CIRCLE_RADIOUS * 2,
-      borderRadius: CIRCLE_RADIOUS,
+      width: CIRCLE_RADIUS * 2,
+      height: CIRCLE_RADIUS * 2,
+      borderRadius: CIRCLE_RADIUS,
       borderColor: 'rgba(0,0,256,0.5)',
       borderWidth: 5
     }
