@@ -37,6 +37,7 @@ const Schedule = () => {
                     marginBottom: _spacing / 2
                 }}>
                 {/* <Ionicons color='#333' name="add" size={24} /> */}
+                <Text style={{fontWeight: "bold", fontSize: 16}} >+</Text>
                 <Text style={{fontSize: 14, color: "#333"}} >Add more</Text>
                 </View>
             </Pressable>
