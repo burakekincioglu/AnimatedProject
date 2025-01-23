@@ -4,6 +4,7 @@ export const constants = {
     PagingDots: 'PagingDots',
     ExploreInterpolate: 'ExploreInterpolate',
     DoubleTapLikeGesture: 'DoubleTapLikeGesture',
-    PangestureGame: 'PangestureGame'
+    PangestureGame: 'PangestureGame',
+    Schedule: 'Schedule'
   }
 }

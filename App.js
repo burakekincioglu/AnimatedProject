@@ -6,6 +6,7 @@ import ExploreInterpolate from './Screens/ExploreInterpolate'
 import HomeScreen from './Screens/Home'
 import PagingDotsScreen from './Screens/PagingDotsScreen'
 import PangestureGame from './Screens/PangestureGame'
+import Schedule from './Screens/Schedule'
 
 const App = () => {
   const RootStack = createNativeStackNavigator({
@@ -35,6 +36,9 @@ const App = () => {
       },
       PangestureGame: {
         screen: PangestureGame
+      },
+      Schedule: {
+        screen: Schedule
       }
     }
   })
