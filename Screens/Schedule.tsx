@@ -1,5 +1,7 @@
+import { Plus, X } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, Switch, Text, View } from 'react-native';
+import Animated, { FadeInDown, FadeOut, LinearTransition } from 'react-native-reanimated';
 import { colors } from '../utils/colors';
 import { spacing } from '../utils/spacing';
 
@@ -10,21 +12,91 @@ const Schedule = () => {
   const _spacing = spacing.sm
   const _color = colors.graywhite
   const _startHour = 8
+  const _damping = 14
+  const _entering = FadeInDown.springify().damping(_damping)
+  const _exiting = FadeOut.springify().damping(_damping)
+  const _layout = LinearTransition.springify().damping(_damping)
+
+  const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
+
+  /* 
+  
+  Bu ekranda dikkat çeken güzellik _layout kullanımıyla 
+  component mount veya unmount hareketlerini smooth hale getirmek
+
+  */
+
+  function HourBlock({block}: {block: number}) {
+    return(
+        <View style={{
+            borderWidth: 1,
+            borderColor: _color,
+            borderRadius: _borderRadius - _spacing,
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            paddingVertical: _spacing / 4
+        }}>
+            <Text>
+                {block > 9 ? block : `0${block}`}:00{" "}
+                {block > 11 && block < 24 ? "PM" : "AM"}
+            </Text>
+        </View>
+    )
+  }
 
   function DayBlock() {
     const [hours, setHours] = useState([_startHour])
 
     return (
-        <View>
-            <Text>Day Block</Text>
-            <Pressable
-            onPress={() => {
-                if (hours.length === 0) {
-                    setHours([_startHour])
-                    return
-                }
-                setHours((prev) => [...prev, prev[prev.length -1] + 1])
-            }}
+        <Animated.View 
+            style={{gap: _spacing}} 
+            entering={_entering}
+            exiting={_exiting}
+            layout={_layout}
+        >
+            {hours.map((hour) => {
+                return( 
+                    <Animated.View 
+                        key={`hour-${hour}`} 
+                        style={{flexDirection: 'row', 
+                                gap: _spacing, 
+                                alignItems: "center"
+                        }}
+                        entering={_entering}
+                        exiting={_exiting}
+                        layout={_layout}
+                    >
+                        <Text>From:</Text>
+                        <HourBlock block={hour} />
+                        <Text>To:</Text>
+                        <HourBlock block={hour + 1} />
+                        <AnimatedPressable onPress={() => {
+                            setHours((prev) => [...prev.filter((k) => k !== hour)])
+                        }} >
+                            <View style={{
+                                backgroundColor: _color,
+                                height: 24,
+                                aspectRatio: 1,
+                                alignItems: "center",
+                                justifyContent: "center",
+                                borderRadius: _borderRadius - _spacing
+                            }} >
+                                <X size={16} color={'#555'} />
+                            </View>
+                        </AnimatedPressable>
+                    </Animated.View>
+                )
+            })}
+            <AnimatedPressable
+                layout={_layout}
+                onPress={() => {
+                    if (hours.length === 0) {
+                        setHours([_startHour])
+                        return
+                    }
+                    setHours((prev) => [...prev, prev[prev.length -1] + 1])
+                }}
             >
                 <View style={{
                     flexDirection: "row",
@@ -36,12 +108,11 @@ const Schedule = () => {
                     alignItems: "center",
                     marginBottom: _spacing / 2
                 }}>
-                {/* <Ionicons color='#333' name="add" size={24} /> */}
-                <Text style={{fontWeight: "bold", fontSize: 16}} >+</Text>
+                <Plus size={16}  color={'black'} />
                 <Text style={{fontSize: 14, color: "#333"}} >Add more</Text>
                 </View>
-            </Pressable>
-        </View>
+            </AnimatedPressable>
+        </Animated.View>
     )
     
   }
@@ -51,11 +122,14 @@ const Schedule = () => {
   function Day({day}: {day: typeof weekDays[number]}) {
     const [isOn, setIsOn] = useState(false)
     return(
-        <View style={{borderWidth: 1,
-                      borderColor: _color,
-                      borderRadius: _borderRadius,
-                      padding: _spacing,
-                      backgroundColor: isOn ? "transparent" : _color
+        <Animated.View 
+            layout={_layout}
+            style={{borderWidth: 1,
+                    borderColor: _color,
+                    borderRadius: _borderRadius,
+                    padding: _spacing,
+                    backgroundColor: isOn ? "transparent" : _color,
+                    gap: _spacing
         }} >
             <View style={{flexDirection: "row", 
                           alignItems: "center", 
@@ -79,7 +153,7 @@ const Schedule = () => {
                 />
             </View>
             {isOn && <DayBlock />}
-        </View>
+        </Animated.View>
         
     )
   }
