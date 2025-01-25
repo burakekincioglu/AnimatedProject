@@ -4,6 +4,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import DoubleTapLikeGesture from './Screens/DoubleTapLikeGesture'
 import ExploreInterpolate from './Screens/ExploreInterpolate'
 import HomeScreen from './Screens/Home'
+import Leaderboard from './Screens/Leaderboard'
 import PagingDotsScreen from './Screens/PagingDotsScreen'
 import PangestureGame from './Screens/PangestureGame'
 import Schedule from './Screens/Schedule'
@@ -39,6 +40,14 @@ const App = () => {
       },
       Schedule: {
         screen: Schedule
+      },
+      Leaderboard: {
+        screen: Leaderboard,
+        options: {
+          headerTransparent: true,
+          headerTitle: '',
+          headerBackTitleVisible: false
+        }
       }
     }
   })

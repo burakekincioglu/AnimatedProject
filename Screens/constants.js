@@ -5,6 +5,7 @@ export const constants = {
     ExploreInterpolate: 'ExploreInterpolate',
     DoubleTapLikeGesture: 'DoubleTapLikeGesture',
     PangestureGame: 'PangestureGame',
-    Schedule: 'Schedule'
+    Schedule: 'Schedule',
+    Leaderboard: 'Leaderboard'
   }
 }
