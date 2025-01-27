@@ -5,8 +5,8 @@ import Animated, { FadeInRight, interpolate, interpolateColor, runOnJS, SharedVa
 /* 
 
 FadeInRight güzel bi şovdu.
-
-
+withDelay(_stagger * index, withSpring(anim.value, { damping: 80, stiffness: 200})) güzel bi şovdu.
+interpolate(_anim.value, [0,1], [_avatarSize ,Math.max(user.score * 3, _avatarSize) ]) burada Math.max kullanımı güzel bi şovdu.
 */
 
 interface Props {
